@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFest 2026 - College Annual Tech Festival</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'slideInLeft': 'slideInLeft 1s ease-out',
+                        'slideInRight': 'slideInRight 1s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px #06b6d4, 0 0 10px #06b6d4, 0 0 15px #06b6d4' },
+                            '100%': { boxShadow: '0 0 10px #06b6d4, 0 0 20px #06b6d4, 0 0 30px #06b6d4' },
+                        },
+                        slideInLeft: {
+                            '0%': { transform: 'translateX(-100%)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(100%)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .bg-pattern {
+            background-color: #0f172a;
+            background-image: 
+                radial-gradient(at 47% 33%, hsl(240, 63%, 13%) 0, transparent 59%), 
+                radial-gradient(at 82% 65%, hsl(218, 39%, 11%) 0, transparent 55%);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-scroll {
+            animation: scroll 20s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Floating Particles Background -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-20 left-10 w-32 h-32 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float"></div>
+        <div class="absolute top-40 right-20 w-40 h-40 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-20 left-40 w-36 h-36 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-bolt text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold gradient-text">TechFest 2026</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-purple-600 transition font-medium">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-purple-600 transition font-medium">About</a>
+                    <a href="#schedule" class="text-gray-700 hover:text-purple-600 transition font-medium">Schedule</a>
+                    <a href="#highlights" class="text-gray-700 hover:text-purple-600 transition font-medium">Highlights</a>
+                    <a href="#speakers" class="text-gray-700 hover:text-purple-600 transition font-medium">Speakers</a>
+                    <a href="#register" class="text-gray-700 hover:text-purple-600 transition font-medium">Register</a>
+                </div>
+                <a href="#register" class="hidden md:block bg-gradient-to-r from-purple-600 to-cyan-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition transform hover:scale-105">
+                    Register Now
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-purple-600">Home</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-purple-600">About</a>
+                <a href="#schedule" class="block py-2 text-gray-700 hover:text-purple-600">Schedule</a>
+                <a href="#highlights" class="block py-2 text-gray-700 hover:text-purple-600">Highlights</a>
+                <a href="#speakers" class="block py-2 text-gray-700 hover:text-purple-600">Speakers</a>
+                <a href="#register" class="block py-2 text-gray-700 hover:text-purple-600">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-20 pb-32 bg-pattern overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center pt-16">
+                <!-- Event Badge -->
+                <div class="inline-block mb-6">
+                    <span class="bg-gradient-to-r from-purple-600 to-cyan-500 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg animate-pulse">
+                        <i class="fas fa-calendar-alt mr-2"></i>March 15-17, 2026
+                    </span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
+                    Experience the Future of
+                    <span class="block bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                        Technology & Innovation
+                    </span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                    Join us for 3 days of workshops, hackathons, tech talks, and networking with industry leaders at the biggest tech festival of the year.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
+                    <a href="#register" class="bg-gradient-to-r from-purple-600 to-cyan-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transition transform hover:scale-105 animate-glow">
+                        <i class="fas fa-ticket-alt mr-2"></i>Get Your Tickets
+                    </a>
+                    <a href="#about" class="glass-effect text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition">
+                        <i class="fas fa-play-circle mr-2"></i>Watch Promo
+                    </a>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                    <div class="glass-effect rounded-2xl p-6">
+                        <div class="text-4xl font-bold text-cyan-400 mb-2">1000+</div>
+                        <div class="text-gray-300 text-sm">Participants</div>
+                    </div>
+                    <div class="glass-effect rounded-2xl p-6">
+                        <div class="text-4xl font-bold text-purple-400 mb-2">50+</div>
+                        <div class="text-gray-300 text-sm">Speakers</div>
+                    </div>
+                    <div class="glass-effect rounded-2xl p-6">
+                        <div class="text-4xl font-bold text-pink-400 mb-2">30+</div>
+                        <div class="text-gray-300 text-sm">Workshops</div>
+                    </div>
+                    <div class="glass-effect rounded-2xl p-6">
+                        <div class="text-4xl font-bold text-cyan-400 mb-2">$50K</div>
+                        <div class="text-gray-300 text-sm">Prize Pool</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#f9fafb"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    About <span class="gradient-text">TechFest 2026</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    The premier technology and innovation festival bringing together students, professionals, and industry leaders
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition card-hover border-t-4 border-purple-500">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-lightbulb text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Innovation Hub</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Explore cutting-edge technologies, attend hands-on workshops, and participate in hackathons that challenge your creativity and skills.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition card-hover border-t-4 border-cyan-500">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Network & Connect</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Meet industry experts, potential employers, and like-minded peers. Build connections that will shape your future career.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition card-hover border-t-4 border-pink-500">
+                    <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-trophy text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Win Big</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Compete in exciting competitions with a total prize pool of $50,000. Showcase your talent and earn recognition.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Event <span class="gradient-text">Schedule</span>
+                </h2>
+                <p class="text-xl text-gray-600">Three days packed with amazing experiences</p>
+            </div>
+
+            <!-- Day Tabs -->
+            <div class="flex justify-center space-x-4 mb-12 flex-wrap gap-4">
+                <button class="day-tab active bg-gradient-to-r from-purple-600 to-cyan-500 text-white px-8 py-3 rounded-full font-semibold shadow-lg" data-day="day1">
+                    Day 1 - March 15
+                </button>
+                <button class="day-tab bg-gray-200 text-gray-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-300 transition" data-day="day2">
+                    Day 2 - March 16
+                </button>
+                <button class="day-tab bg-gray-200 text-gray-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-300 transition" data-day="day3">
+                    Day 3 - March 17
+                </button>
+            </div>
+
+            <!-- Day 1 Schedule -->
+            <div id="day1" class="schedule-content">
+                <div class="space-y-6">
+                    <div class="flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-6 bg-gradient-to-r from-purple-50 to-cyan-50 rounded-2xl p-6 shadow-md hover:shadow-xl transition">
+                        <div class="flex-shrink-0">
+                            <div class="bg-purple-600 text-white px-4 py-2 rounded-lg text-center min-w-[100px]">
+                                <div class="text-2xl font-bold">09:00</div>
+                                <div class="text-sm">AM</div>
+                            </div>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Opening Ceremony & Keynote</h3>
+                            <p class="text-gray-600 mb-3">Welcome address and keynote speech on "The Future of AI in Education"</p>
+                            <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+                                <span><i class="fas fa-map-marker-alt mr-2"></i>Main Auditorium</span>
+                                <span><i class="fas fa-user mr-2"></i>Dr. Sarah Johnson, MIT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-6 bg-gradient-to-r from-cyan-50 to-purple-50 rounded-2xl p-6 shadow-md hover:shadow-xl transition">
+                        <div class="flex-shrink-0">
+                            <div class="bg-cyan-600 text-white px-4 py-2 rounded-lg text-center min-w-[100px]">
+                                <div class="text-2xl font-bold">11:00</div>
+                                <div class="text-sm">AM</div>
+                            </div>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Web3 & Blockchain Workshop</h3>
+                            <p class="text-gray-600 mb-3">Hands-on workshop on building decentralized applications</p>
+                            <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+                                <span><i class="fas fa-map-marker-alt mr-2"></i>Workshop Hall A</span>
+                                <span><i class="fas fa-clock mr-2"></i>2 hours</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-6 bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-6 shadow-md hover:shadow-xl transition">
+                        <div class="flex-shrink-0">
+                            <div class="bg-pink-600 text-white px-4 py-2 rounded-lg text-center min-w-[100px]">
+                                <div class="text-2xl font-bold">02:00</div>
+                                <div class="text-sm">PM</div>
+                            </div>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Hackathon Kickoff</h3>
+                            <p class="text-gray-600 mb-3">24-hour coding challenge begins - Theme: Sustainable Tech Solutions</p>
+                            <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+                                <span><i class="fas fa-map-marker-alt mr-2"></i>Innovation Lab</span>
+                                <span><i class="fas fa-trophy mr-2"></i>Prize: $20,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 shadow-md hover:shadow-xl transition">
+                        <div class="flex-shrink-0">
+                            <div class="bg-purple-600 text-white px-4 py-2 rounded-lg text-center min-w-[100px]">
+                                <div class="text-2xl font-bold">05:00</div>
+                                <div class="text-sm">PM</div>
+                            </div>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Networking Session & Expo</h3>
+                            <p class="text-gray-600 mb-3">Meet sponsors, explore tech booths, and connect with industry professionals</p>
+                            <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+                                <span><i class="fas fa-map-marker-alt mr-2"></i>Exhibition Hall</span>
+                                <span><i class="fas fa-users mr-2"></i>Open to all</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 Schedule (Hidden by default) -->
+            <div id="day2" class="schedule-content hidden">
+                <div class="space-y-6">
+                    <div class="flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-6 bg-gradient-to-r from-cyan-50 to-purple-50 rounded-2xl p-6 shadow-md hover:shadow-xl transition">
+                        <div class="flex-shrink-0">
+                            <div class="bg-cyan-600 text-white px-4 py-2 rounded-lg text-center min-w-[100px]">
+                                <div class="text-2xl font-bold">10:00</div>
+                                <div class="text-sm">AM</div>
+                            </div>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="
